@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+       <h2>This is Laptop Details  info</h2>
+<table class="table table-striped">
+    <tr>
+        <th>LAPTOP ID</th>
+        <th>COMPANY NAME </th>
+        <th>MODEL NAME</th>
+        <th>RAM</th>
+        <th>ROM</th>
+        <th>PROCESSOR</th>
+        <th>PRICE</th>
+        <th>WEIGHT</th>
+        <th>UPDATE</th>
+        <th>DELETE</th>
+
+    </tr>
+    {% for laptops in object_list %}
+    <tr>
+        <td>{{laptops.id}}</td>
+        <td>{{laptops.company}}</td>
+        <td>{{laptops.model_name}}</td>
+        <td>{{laptops.ram}}</td>
+        <td>{{laptops.rom}}</td>
+        <td>{{laptops.processor}}</td>
+        <td>{{laptops.price}}</td>
+        <td>{{laptops.weight}}</td>
+
+        <td>
+            <a href="{% url 'update_laptop' laptops.id %}">
+                <button class="btn btn-primary">Update</button></a>
+        </td>
+
+        <td>
+            <a href="{% url 'delete_laptop' laptops.id %}">
+                <button class="btn btn-danger">Delete</button></a>
+        </td>
+
+
+    </tr>
+    {% endfor %}
+
+    {% if messages %}
+    <ul class="messages">
+          {% for message in messages %}
+          <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+</table>
+{% endblock %}
+{% block title %}
+       <title>My project title</title>
+{% endblock %}
